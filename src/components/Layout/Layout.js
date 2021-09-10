@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 import css from '../Layout/Layout.module.css'
 
 const Layout = ({ title, desc, urlBg, colorBg }) => {
+    const styleRoot = {
+        backgroundImage: `url(${urlBg})`,
+        background: `${colorBg}`
+    }
     return (
-        <section className={css.root} style={{ backgroundImage: `url(${urlBg})`, background: colorBg }}>
+        <section className={css.root} style={styleRoot}>
             <div className={css.wrapper}>
                 <article>
                     <div className={css.title}>
