@@ -1,5 +1,4 @@
 import './App.css';
-import shortid from 'shortid';
 import Header from './components/Header/Header'
 import Layout from './components/Layout/Layout'
 import Footer from './components/Footer/Footer'
@@ -22,7 +21,7 @@ function App() {
         <div className="flex">
           {data.map(({ type, img, name, values, id }) => (
             <PokemonCard
-              key={shortid.generate()}
+              key={id}
               type={type}
               img={img}
               name={name}
