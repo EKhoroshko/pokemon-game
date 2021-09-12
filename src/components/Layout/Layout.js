@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import css from '../Layout/Layout.module.css'
 
-const Layout = ({ title, desc, urlBg, colorBg }) => {
+const Layout = ({ title, desc, urlBg, colorBg, children }) => {
     const styleRoot = {
         backgroundImage: `url(${urlBg})`,
         background: `${colorBg}`
@@ -18,6 +18,7 @@ const Layout = ({ title, desc, urlBg, colorBg }) => {
 
                     <div className={`${css.desc} ${css.full}`}>
                         <p>{desc}</p>
+                        {children}
                     </div>
                 </article>
             </div>
