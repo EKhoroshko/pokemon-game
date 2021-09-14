@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames'
 import css from '../Layout/Layout.module.css'
 
 const Layout = ({ title, desc, urlBg, colorBg, children }) => {
@@ -16,13 +17,13 @@ const Layout = ({ title, desc, urlBg, colorBg, children }) => {
                         <span className={css.separator}></span>
                     </div>
 
-                    <div className={`${css.desc} ${css.full}`}>
+                    <div className={cn(css.desc, css.full)}>
                         <p>{desc}</p>
                         {children}
                     </div>
                 </article>
             </div>
-        </section >
+        </section>
     );
 }
 
