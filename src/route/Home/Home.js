@@ -11,8 +11,8 @@ import team from '../../assets/imges/bg2.jpg'
 const Home = ({ handleChangePage }) => {
     return (
         <div>
-            <MenuHeader handleChangePage={handleChangePage} />
-            <Header title={'Pokemon Game'} descr={'This is simple triple triad card game'} />
+            <MenuHeader />
+            <Header title={'Pokemon Game'} descr={'This is simple triple triad card game'} handleChangePage={handleChangePage} />
             <Layout title={'Pokemon'} desc={'Short description'} urlBg={pika}>
                 <p>
                     In the game two players face off against one another, one side playing as "blue", the other as "red" on a 3x3 grid.

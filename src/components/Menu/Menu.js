@@ -2,24 +2,19 @@ import PropTypes from 'prop-types';
 import css from '../Menu/Menu.module.css';
 import cn from 'classnames'
 
-const Menu = ({ isActive, handleChangePage, handleClickButton }) => {
-    const handleClickMenu = (page) => {
-        handleChangePage && handleChangePage(page);
-        handleClickButton && handleClickButton();
-    }
-
+const Menu = ({ isActive }) => {
     return (
         <div className={cn(css.menuContainer, { [css.active]: isActive }, { [css.deactive]: !isActive })}>
             <div className={css.overlay} />
             <div className={css.menuItems}>
                 <ul>
                     <li>
-                        <a href="#welcome" onClick={() => { handleClickMenu("home") }}>
+                        <a href="#welcome">
                             HOME
                         </a>
                     </li>
                     <li>
-                        <a href="#game" onClick={() => { handleClickMenu("game") }}>
+                        <a href="#game">
                             GAME
                         </a>
                     </li>
@@ -35,7 +30,7 @@ const Menu = ({ isActive, handleChangePage, handleClickButton }) => {
                     </li>
                 </ul>
             </div>
-        </div>
+        </div >
     );
 }
 

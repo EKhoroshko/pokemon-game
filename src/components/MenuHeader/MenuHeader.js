@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Menu from '../Menu/Menu';
 import NavBar from '../NavBar/NavBar';
 
-const MenuHeader = ({ handleChangePage }) => {
+const MenuHeader = () => {
     const [isActive, setIsActive] = useState(null);
 
     const handleClickButton = () => {
@@ -15,7 +15,7 @@ const MenuHeader = ({ handleChangePage }) => {
     return (
         <section>
             <NavBar isActive={isActive} handleClickButton={handleClickButton} />
-            <Menu isActive={isActive} handleChangePage={handleChangePage} handleClickButton={handleClickButton} />
+            <Menu isActive={isActive} />
         </section>
     );
 }

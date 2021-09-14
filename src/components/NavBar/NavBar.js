@@ -5,11 +5,6 @@ import css from '../NavBar/NavBar.module.css';
 import cn from 'classnames';
 
 const NavBar = ({ isActive, handleClickButton }) => {
-
-    const handleClick = () => {
-        handleClickButton && handleClickButton();
-    }
-
     return (
         <nav className={css.root}>
             <div className={css.navWrapper}>
@@ -17,7 +12,7 @@ const NavBar = ({ isActive, handleClickButton }) => {
                     LOGO
                 </p>
                 <a className={cn(css.menuButton, { [css.active]: isActive })}
-                    onClick={handleClick}>
+                    onClick={() => handleClickButton()}>
                     <span />
                 </a>
             </div>
