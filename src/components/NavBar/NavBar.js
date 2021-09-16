@@ -4,15 +4,15 @@ import React from 'react';
 import css from '../NavBar/NavBar.module.css';
 import cn from 'classnames';
 
-const NavBar = ({ isActive, handleClickButton }) => {
+const NavBar = ({ isActive, handleClickBurgger, bgActive = false }) => {
     return (
-        <nav className={css.root}>
+        <nav className={cn(css.root, { [css.bgActive]: bgActive })}>
             <div className={css.navWrapper}>
                 <p className={css.brand}>
                     LOGO
                 </p>
                 <a className={cn(css.menuButton, { [css.active]: isActive })}
-                    onClick={() => handleClickButton()}>
+                    onClick={() => handleClickBurgger()}>
                     <span />
                 </a>
             </div>
@@ -23,6 +23,7 @@ const NavBar = ({ isActive, handleClickButton }) => {
 NavBar.propTypes = {
     handleClickButton: PropTypes.func,
     isActive: PropTypes.bool,
+    bgActive: PropTypes.bool,
 };
 
 export default NavBar;

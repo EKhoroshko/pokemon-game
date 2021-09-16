@@ -1,18 +1,11 @@
-import React, { useState } from 'react';
-import card from '../../assets/imges/card-back-side.jpg'
+import card from '../../assets/imges/card-back-side.jpg';
 import PropTypes from 'prop-types';
-import cn from 'classnames'
+import cn from 'classnames';
 import css from '../PokemonCard/PokemonCard.module.css';
 
-function PokemonCard({ type, img, name, values, id }) {
-    const [isActive, setIsActive] = useState(false)
-
-    const handlClick = () => {
-        setIsActive(!isActive);
-    }
-
+function PokemonCard({ type, img, name, values, id, handlClickCard, isActive }) {
     return (
-        <div className={css.root} onClick={handlClick}>
+        <div className={css.root} onClick={() => handlClickCard(id)}>
             <div className={cn(css.pokemonCard, { [css.active]: isActive })}>
                 <div className={css.cardFront}>
                     <div className={cn(css.wrap, css.front)}>
@@ -42,7 +35,7 @@ function PokemonCard({ type, img, name, values, id }) {
                 </div>
 
             </div>
-        </div >
+        </div>
     );
 }
 
@@ -52,6 +45,8 @@ PokemonCard.propTypes = {
     name: PropTypes.string,
     values: PropTypes.object,
     id: PropTypes.number,
+    isActive: PropTypes.bool,
+    handlClickCard: PropTypes.func,
 };
 
 export default PokemonCard;

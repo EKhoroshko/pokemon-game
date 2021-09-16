@@ -1,42 +1,42 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom'
 import css from '../Menu/Menu.module.css';
 import cn from 'classnames'
 
-const Menu = ({ isActive }) => {
+const Menu = ({ isActive, handleClickBurgger }) => {
     return (
-        <div className={cn(css.menuContainer, { [css.active]: isActive }, { [css.deactive]: !isActive })}>
+        <div className={cn(css.menuContainer, { [css.active]: isActive === true }, { [css.deactive]: isActive === false })}>
             <div className={css.overlay} />
             <div className={css.menuItems}>
                 <ul>
                     <li>
-                        <a href="#welcome">
+                        <Link to="/" onClick={() => handleClickBurgger()}>
                             HOME
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#game">
+                        <Link to="game" onClick={() => handleClickBurgger()}>
                             GAME
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#about">
+                        <Link to="about" onClick={() => handleClickBurgger()}>
                             ABOUT
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#contact">
+                        <Link to="contact" onClick={() => handleClickBurgger()}>
                             CONTACT
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </div>
-        </div >
+        </div>
     );
 }
 
 Menu.propTypes = {
-    handleChangePage: PropTypes.func,
-    handleClickButton: PropTypes.func,
+    handleClickBurgger: PropTypes.func,
     isActive: PropTypes.bool,
 };
 
