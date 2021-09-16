@@ -14,12 +14,12 @@
   margin: 0 auto;
 }
 
-/*.root article {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1rem;
-  padding: 3rem 0;
-}*/
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
 .root .title {
   grid-column-end: span 4;
