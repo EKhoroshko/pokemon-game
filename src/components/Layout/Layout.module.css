@@ -65,6 +65,11 @@
   text-align: justify;
 }
 
+.addPoke {
+  display: flex;
+  justify-content: center;
+}
+
 @media only screen and (max-width: 1149px) {
   .root article {
     grid-template-columns: 1fr;
