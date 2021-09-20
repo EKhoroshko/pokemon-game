@@ -43,7 +43,7 @@ PokemonCard.propTypes = {
     type: PropTypes.string,
     img: PropTypes.string,
     name: PropTypes.string,
-    values: PropTypes.object,
+    //values: PropTypes.object,
     id: PropTypes.number,
     isActive: PropTypes.bool,
     handlClickCard: PropTypes.func,

@@ -1,41 +1,39 @@
 import { useHistory } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { FirebaseContext } from '../../Context/FirebaseContext';
 import Layout from '../../components/Layout/Layout';
 import css from '../../components/Layout/Layout.module.css'
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
-import database from '../../service/firebase';
-import db from '../../base/db.json'
+import Data from '../../base/db.json'
 
 const GamePage = () => {
+    const firebase = useContext(FirebaseContext);
     const [pokemons, setPokemons] = useState({})
     const history = useHistory();
 
     useEffect(() => {
-        database.ref('pokemons').once('value', (snapshot) => {
-            setPokemons(snapshot.val());
+        firebase.getPokemonSocket((pokemons) => {
+            setPokemons(pokemons);
         })
-    }, [pokemons])
+    }, []);
 
     const handlClickCard = (id) => {
-        setPokemons(prewState => {
-            return Object.entries(prewState).reduce((acc, item) => {
+        setPokemons(prevState => {
+            return Object.entries(prevState).reduce((acc, item) => {
                 const pokemon = { ...item[1] };
                 if (pokemon.id === id) {
                     pokemon.active = !pokemon.active;
-                    database.ref('pokemons/' + item[0]).set({ ...pokemon });
                 };
                 acc[item[0]] = pokemon;
+                firebase.postPokemon(item[0], pokemon)
                 return acc;
             }, {});
         })
     }
 
     const AddPokemon = () => {
-        const randomaizer = Math.floor(Math.random() * db.length);
-        const newKey = database.ref().child("pokemons").push().key;
-        database.ref("pokemons/" + newKey).set(db[randomaizer]);
-        console.log(pokemons);
-
+        const data = Data;
+        firebase.addPokemon(data);
     }
 
     const handleClick = () => {
