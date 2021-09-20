@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import css from '../Menu/Menu.module.css';
-import cn from 'classnames'
+import cn from 'classnames';
 
 const Menu = ({ isActive, handleClickBurgger }) => {
     return (
@@ -15,17 +15,17 @@ const Menu = ({ isActive, handleClickBurgger }) => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="game" onClick={() => handleClickBurgger()}>
+                        <Link to="/game" onClick={() => handleClickBurgger()}>
                             GAME
                         </Link>
                     </li>
                     <li>
-                        <Link to="about" onClick={() => handleClickBurgger()}>
+                        <Link to="/about" onClick={() => handleClickBurgger()}>
                             ABOUT
                         </Link>
                     </li>
                     <li>
-                        <Link to="contact" onClick={() => handleClickBurgger()}>
+                        <Link to="/contact" onClick={() => handleClickBurgger()}>
                             CONTACT
                         </Link>
                     </li>
