@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
 import React from 'react';
-import css from '../NavBar/NavBar.module.css';
 import cn from 'classnames';
+import css from '../NavBar/NavBar.module.css';
 
 const NavBar = ({ isActive, handleClickBurgger, bgActive = false }) => {
     return (
