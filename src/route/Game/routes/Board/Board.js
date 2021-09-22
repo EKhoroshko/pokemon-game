@@ -1,6 +1,6 @@
 import React from 'react';
 import { PokemonContext } from '../../../../Context/PokemonContext';
-import { useContext } from 'react/cjs/react.development';
+import { useContext } from 'react';
 import PokemonCard from '../../../../components/PokemonCard/PokemonCard';
 import css from '../Board/Board.module.css';
 
