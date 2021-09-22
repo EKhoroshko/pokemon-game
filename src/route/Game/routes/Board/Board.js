@@ -1,7 +1,7 @@
 import React from 'react';
+import { PokemonContext } from '../../../../Context/PokemonContext';
 import { useContext } from 'react/cjs/react.development';
 import PokemonCard from '../../../../components/PokemonCard/PokemonCard';
-import { PokemonContext } from '../../../../Context/PokemonContext'
 import css from '../Board/Board.module.css';
 
 const BoardPage = () => {
