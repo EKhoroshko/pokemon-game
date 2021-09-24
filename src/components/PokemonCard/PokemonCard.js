@@ -2,17 +2,21 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import css from '../PokemonCard/PokemonCard.module.css';
 
-function PokemonCard({ className, type, img, name, values, id, handlClickCard, isActive, isSelected, minimize }) {
+function PokemonCard({ className, type, img, name, possession, values, id, handlClickCard, isActive, isSelected, minimize }) {
+    const changeActivSelectid = () => {
+        handlClickCard && handlClickCard(id);
+    }
+
     return (
         <div className={cn(className, css.pokemonCard,
             {
                 [css.active]: isActive,
                 [css.selected]: isSelected
             })}
-            onClick={() => handlClickCard(id)}>
+            onClick={changeActivSelectid}>
             <div className={css.cardFront}>
                 <div className={cn(css.wrap, css.front)}>
-                    <div className={cn(css.pokemon, css[type])}>
+                    <div className={cn(css.pokemon, css[type], css[possession])}>
                         <div className={css.values}>
                             <div className={cn(css.count, css.top)}>{values.top}</div>
                             <div className={cn(css.count, css.right)}>{values.right}</div>

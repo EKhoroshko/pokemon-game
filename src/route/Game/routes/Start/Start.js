@@ -16,7 +16,7 @@ const StartPage = () => {
         firebase.getPokemonSocket((pokemons) => {
             setPokemons(pokemons);
         });
-        return () => firebase.offtPokemonSocket();
+        return () => firebase.offPokemonSocket();
     }, []);
 
     const handlClickCard = (key) => {

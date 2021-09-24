@@ -25,7 +25,7 @@ class Firebase {
         })
     }
 
-    offtPokemonSocket = () => {
+    offPokemonSocket = () => {
         this.database.ref('pokemons').off();
     }
 
