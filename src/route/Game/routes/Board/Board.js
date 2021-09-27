@@ -1,14 +1,14 @@
 import { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { PokemonContext } from '../../../../Context/PokemonContext';
-import { fetchData, cheackPlate } from '../../../../service/boardApi';
+import { fetchData, cheackPlate, fetcPlayer2 } from '../../../../service/boardApi';
 import { counterWin } from '../../../../service/CounterWin';
 import PlayerBoard from '../Board/component/PlayerBoard/PlayerBoard';
 import PokemonCard from '../../../../components/PokemonCard/PokemonCard';
 import css from '../Board/Board.module.css';
 
 const BoardPage = () => {
-    const { pokemon, playerTwo, setCounter } = useContext(PokemonContext);
+    const { pokemon, playerTwo, setPlayerTwo, setCounter } = useContext(PokemonContext);
     const [board, setBoard] = useState([]);
     const [player1, setPlayer1] = useState([]);
     const [player2, setPlayer2] = useState([]);
@@ -22,7 +22,13 @@ const BoardPage = () => {
 
     useEffect(() => {
         fetchData().then(({ data }) => setBoard(data));
-    }, []);
+        fetcPlayer2().then(({ data }) => setPlayerTwo(() => {
+            return data.map(item => ({
+                ...item,
+                possession: 'red',
+            }))
+        }));
+    }, [setPlayerTwo]);
 
     useEffect(() => {
         setPlayer1(Object.values(pokemon).map(item => ({

@@ -1,6 +1,5 @@
 import { useRouteMatch, Route, Switch } from "react-router-dom";
-import { useState, useEffect } from 'react';
-import { fetcPlayer2 } from '../../service/boardApi';
+import { useState } from 'react';
 import { PokemonContext } from '../../Context/PokemonContext';
 import StartPage from './routes/Start/Start';
 import BoardPage from './routes/Board/Board';
@@ -26,17 +25,6 @@ const Game = () => {
         });
     }
 
-    const updatePokemon2 = () => fetcPlayer2().then(({ data }) => setPlayerTwo(() => {
-        return data.map(item => ({
-            ...item,
-            possession: 'red',
-        }))
-    }));
-
-    useEffect(() => {
-        updatePokemon2();
-    }, [])
-
     const clearContext = () => {
         setSelectedPokemon({});
         setPlayerTwo([]);
@@ -49,7 +37,7 @@ const Game = () => {
             counter: counter,
             addPokemonContext,
             clearContext,
-            updatePokemon2,
+            setPlayerTwo,
             setCounter,
         }} >
             <Switch>

@@ -8,7 +8,7 @@ import css from '../Finish/Finish.module.css';
 
 const FinishPage = () => {
     const { addPokemon } = useContext(FirebaseContext);
-    const { pokemon, playerTwo, clearContext, updatePokemon2, counter } = useContext(PokemonContext);
+    const { pokemon, playerTwo, clearContext, counter } = useContext(PokemonContext);
     const [player1, setPlayer1] = useState([]);
     const [player2, setPlayer2] = useState([]);
     const [chouseCard, setChouseCard] = useState(null)
@@ -26,7 +26,6 @@ const FinishPage = () => {
     const refreshPage = () => {
         clearContext();
         history.push('/game');
-        updatePokemon2();
     }
 
     const handleClick = () => {
