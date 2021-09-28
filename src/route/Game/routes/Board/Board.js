@@ -1,14 +1,20 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { PokemonContext } from '../../../../Context/PokemonContext';
-import { fetchData, cheackPlate, fetcPlayer2 } from '../../../../service/boardApi';
+import { useDispatch, useSelector } from 'react-redux';
+import { saveCounter } from '../../../../store/counter';
+import { setPokemonData } from '../../../../store/selectedPokemon';
+import { selectPokemonData, targetPokemon } from '../../../../store/secondPlayer';
+import { fetchData, cheackPlate } from '../../../../service/boardApi';
 import { counterWin } from '../../../../service/CounterWin';
 import PlayerBoard from '../Board/component/PlayerBoard/PlayerBoard';
 import PokemonCard from '../../../../components/PokemonCard/PokemonCard';
+
 import css from '../Board/Board.module.css';
 
 const BoardPage = () => {
-    const { pokemon, playerTwo, setPlayerTwo, setCounter } = useContext(PokemonContext);
+    const pokemonSelect = useSelector(setPokemonData);
+    const secondPlayer = useSelector(selectPokemonData);
+    const dispatch = useDispatch();
     const [board, setBoard] = useState([]);
     const [player1, setPlayer1] = useState([]);
     const [player2, setPlayer2] = useState([]);
@@ -17,25 +23,20 @@ const BoardPage = () => {
     const history = useHistory();
 
     useEffect(() => {
-        setPlayer2(playerTwo);
-    }, [playerTwo]);
-
-    useEffect(() => {
         fetchData().then(({ data }) => setBoard(data));
-        fetcPlayer2().then(({ data }) => setPlayerTwo(() => {
-            return data.map(item => ({
-                ...item,
-                possession: 'red',
-            }))
-        }));
-    }, [setPlayerTwo]);
+        dispatch(targetPokemon());
+    }, [dispatch]);
 
     useEffect(() => {
-        setPlayer1(Object.values(pokemon).map(item => ({
+        setPlayer2(secondPlayer);
+    }, [secondPlayer])
+
+    useEffect(() => {
+        setPlayer1(Object.values(pokemonSelect).map(item => ({
             ...item,
             possession: 'blue',
         })));
-    }, [pokemon])
+    }, [pokemonSelect])
 
     const onClickPlate = async (position) => {
         if (choiceCard) {
@@ -62,7 +63,7 @@ const BoardPage = () => {
         if (steps === 9) {
             history.push(`/game/finish`)
             const [count1, count2] = counterWin(board, player1, player2);
-            setCounter(count1);
+            dispatch(saveCounter(count1))
 
             if (count1 > count2) {
                 alert('WIN');
@@ -75,14 +76,15 @@ const BoardPage = () => {
                 alert('DRAW');
             }
         }
-    }, [board, history, player1, player2, setCounter, steps]);
+    }, [board, dispatch, history, player1, player2, steps]);
 
-    if (Object.values(pokemon).length === 0) {
+    if (Object.values(pokemonSelect).length === 0) {
         history.replace('/game')
     }
 
     return (
         <div className={css.root}>
+
             <div className={css.playerOne}>
                 <PlayerBoard
                     player={1}

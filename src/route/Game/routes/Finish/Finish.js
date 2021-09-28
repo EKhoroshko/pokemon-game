@@ -1,36 +1,42 @@
-import { PokemonContext } from '../../../../Context/PokemonContext';
-import { FirebaseContext } from '../../../../Context/FirebaseContext';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectCounterData } from '../../../../store/counter';
 import { useHistory } from 'react-router-dom';
-import { useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { setPokemonData, clearChose } from '../../../../store/selectedPokemon';
+import { addPokemonAsync } from '../../../../store/pokemons';
+import { selectPokemonData, clearState } from '../../../../store/secondPlayer'
 import PokemonCard from '../../../../components/PokemonCard/PokemonCard';
 import cn from 'classnames';
 import css from '../Finish/Finish.module.css';
 
 const FinishPage = () => {
-    const { addPokemon } = useContext(FirebaseContext);
-    const { pokemon, playerTwo, clearContext, counter } = useContext(PokemonContext);
+    const counter = useSelector(selectCounterData);
+    const pokemonSelect = useSelector(setPokemonData);
+    const secondPlayer = useSelector(selectPokemonData);
+    const dispatch = useDispatch();
     const [player1, setPlayer1] = useState([]);
     const [player2, setPlayer2] = useState([]);
     const [chouseCard, setChouseCard] = useState(null)
     const history = useHistory();
 
-    if (Object.values(pokemon).length === 0) {
+    if (Object.values(pokemonSelect).length === 0) {
         history.replace('/game')
     }
 
     useEffect(() => {
-        setPlayer1(pokemon);
-        setPlayer2(playerTwo);
-    }, [playerTwo, pokemon]);
+        setPlayer1(pokemonSelect);
+        setPlayer2(secondPlayer);
+    }, [pokemonSelect, secondPlayer]);
 
     const refreshPage = () => {
-        clearContext();
+        dispatch(clearState());
+        dispatch(clearChose());
         history.push('/game');
     }
 
     const handleClick = () => {
         if (counter > 5) {
-            addPokemon(chouseCard);
+            addPokemonAsync(chouseCard);
             refreshPage();
         } else {
             refreshPage();

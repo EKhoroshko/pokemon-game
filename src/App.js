@@ -9,14 +9,14 @@ import Contact from './route/Contact/Contact';
 import NotFound from './route/NotFound/NotFound';
 import MenuHeader from './components/MenuHeader/MenuHeader';
 import Footer from './components/Footer/Footer';
-import Firebase from './service/firebase';
+import FirebaseClass from './service/firebase';
 
 const App = () => {
   const location = useLocation();
   const isPadding = location.pathname === '/' || location.pathname === '/game/board';
 
   return (
-    <FirebaseContext.Provider value={new Firebase()}>
+    <FirebaseContext.Provider value={FirebaseClass}>
       <Switch>
         <Route path="/404" component={NotFound} />
         <Route>
