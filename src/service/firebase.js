@@ -25,7 +25,7 @@ class Firebase {
         })
     }
 
-    offtPokemonSocket = () => {
+    offPokemonSocket = () => {
         this.database.ref('pokemons').off();
     }
 
@@ -44,5 +44,6 @@ class Firebase {
 
 }
 
+const FirebaseClass = new Firebase();
 
-export default Firebase;
+export default FirebaseClass;
