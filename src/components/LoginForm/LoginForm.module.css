@@ -1,0 +1,17 @@
+.box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonREgistr {
+  width: 100%;
+  max-width: 140px;
+  margin-top: 10px;
+  background: #fafafa;
+  border: 1px solid transparent;
+  color: #f300b4;
+  font-weight: bold;
+  font-size: 12px;
+  outline: none;
+  transition: all 500ms ease-in;
+}
