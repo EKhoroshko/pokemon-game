@@ -9,7 +9,10 @@ import Contact from './route/Contact/Contact';
 import NotFound from './route/NotFound/NotFound';
 import MenuHeader from './components/MenuHeader/MenuHeader';
 import Footer from './components/Footer/Footer';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import FirebaseClass from './service/firebase';
+import { NotificationContainer } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 const App = () => {
   const location = useLocation();
@@ -25,8 +28,8 @@ const App = () => {
             <div className={cn(css.wrap, { [css.isHome]: isPadding })}>
               <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/game" component={Game} />
-                <Route path="/about" component={About} />
+                <PrivateRoute path="/game" component={Game} />
+                <PrivateRoute path="/about" component={About} />
                 <Route path="/contact" component={Contact} />
                 <Redirect to="404" />
               </Switch>
@@ -35,6 +38,7 @@ const App = () => {
           </section>
         </Route>
       </Switch>
+      <NotificationContainer />
     </FirebaseContext.Provider>
   );
 }
