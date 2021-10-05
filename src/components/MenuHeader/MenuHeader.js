@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Menu from '../Menu/Menu';
@@ -33,14 +33,6 @@ const MenuHeader = ({ bgActive }) => {
     const [isActive, setIsActive] = useState(null);
     const [isOpenModal, setIsOpenModal] = useState(false);
 
-    useEffect(() => {
-        clearToken();
-    }, [])
-
-    const clearToken = () => {
-        localStorage.removeItem('idToken');
-    }
-
     const handleClickBurgger = () => {
         setIsActive(!isActive);
     }
@@ -50,10 +42,22 @@ const MenuHeader = ({ bgActive }) => {
     }
 
     const onSubmit = async (props) => {
-        const response = await loginSignupUser(props)
+        const response = await loginSignupUser(props);
+        console.log(response);
         if (response.hasOwnProperty('error')) {
             NotificationManager.error(response.error.message, 'Warning');
         } else {
+            if (props.type === 'signup') {
+                const pokemonStart = await fetch('https://reactmarathon-api.herokuapp.com/api/pokemons/starter')
+                    .then(response => response.json());
+                for (const item of pokemonStart.data) {
+                    const requestOptions = {
+                        method: 'POST',
+                        body: JSON.stringify(item),
+                    }
+                    await fetch(`https://pokemon-3f169-default-rtdb.firebaseio.com/${response.localId}/pokemons.json?auth=${response.idToken}`, requestOptions)
+                }
+            }
             localStorage.setItem('idToken', response.idToken)
             NotificationManager.success("Welcome");
             handlClickLogin();
