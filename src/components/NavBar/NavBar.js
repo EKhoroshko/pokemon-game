@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 const NavBar = ({ onClicklogin, isActive, handleClickBurgger, bgActive = false }) => {
     const isLoadingUser = useSelector(selectUserLoading);
     const localId = useSelector(selectLocalID);
+    console.log(localId);
 
     return (
         <nav className={cn(css.root, { [css.bgActive]: bgActive })}>

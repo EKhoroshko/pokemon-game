@@ -6,6 +6,8 @@ import NavBar from '../NavBar/NavBar';
 import Modal from '../Modal/Modal';
 import LoginForm from '../LoginForm/LoginForm';
 import { NotificationManager } from 'react-notifications';
+import { useDispatch } from 'react-redux';
+import { getUserUpdateAsync } from '../../store/user';
 
 const KEY = 'AIzaSyCf-lcmD5kNBRfiZ8paKG4Cm02rkH3VsKY';
 
@@ -32,6 +34,7 @@ const loginSignupUser = async ({ email, password, type }) => {
 const MenuHeader = ({ bgActive }) => {
     const [isActive, setIsActive] = useState(null);
     const [isOpenModal, setIsOpenModal] = useState(false);
+    const dispatch = useDispatch();
 
     const handleClickBurgger = () => {
         setIsActive(!isActive);
@@ -43,7 +46,6 @@ const MenuHeader = ({ bgActive }) => {
 
     const onSubmit = async (props) => {
         const response = await loginSignupUser(props);
-        console.log(response);
         if (response.hasOwnProperty('error')) {
             NotificationManager.error(response.error.message, 'Warning');
         } else {
@@ -60,6 +62,7 @@ const MenuHeader = ({ bgActive }) => {
             }
             localStorage.setItem('idToken', response.idToken)
             NotificationManager.success("Welcome");
+            dispatch(getUserUpdateAsync());
             handlClickLogin();
         }
     }

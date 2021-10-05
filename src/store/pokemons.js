@@ -39,12 +39,13 @@ export const getPokemonsAsync = () => async (dispatch, getState) => {
     dispatch(fetchPokemons());
     const data = await fetch(`https://pokemon-3f169-default-rtdb.firebaseio.com/${localId}/pokemons.json`)
         .then(response => response.json());
-    console.log(`data`, data);
     dispatch(fetchPokemonResolve(data));
 }
 
-export const addPokemonAsync = (pokemon) => {
-    FirebaseClass.addPokemon(pokemon)
+export const addPokemonAsync = (pokemon, localId) => async (dispatch, getState) => {
+    const localId = selectLocalID(getState())
+    dispatch(fetchPokemons());
+    FirebaseClass.addPokemon(pokemon, localId);
 }
 
 export default slice.reducer;

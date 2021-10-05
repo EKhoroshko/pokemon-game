@@ -22,7 +22,7 @@ const StartPage = () => {
 
     useEffect(() => {
         setPokemons(pokemonRedux);
-    }, [pokemonRedux])
+    }, [pokemonRedux]);
 
     const handlClickCard = (key) => {
         const pokemon = { ...pokemons[key] }
@@ -42,6 +42,7 @@ const StartPage = () => {
 
     return (
         <section>
+            <h3 className={css.text}>Choose 5 Pokémon for your team</h3>
             <div className={css.addPoke}>
                 <button onClick={handleClick}
                     disabled={Object.keys(pokemonSelect).length < 5}
