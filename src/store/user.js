@@ -4,7 +4,7 @@ const KEY = 'AIzaSyCf-lcmD5kNBRfiZ8paKG4Cm02rkH3VsKY';
 export const slice = createSlice({
     name: 'user',
     initialState: {
-        isLoading: false,
+        isLoading: true,
         data: {},
     },
     reducers: {
@@ -46,7 +46,6 @@ export const getUserAsync = () => async (dispatch) => {
             dispatch(removeUser);
         } else {
             dispatch(updateUser(response.users[0]))
-            console.log(`response.users[0]`, response.users[0])
         }
 
     } else (
