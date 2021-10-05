@@ -9,6 +9,7 @@ import Contact from './route/Contact/Contact';
 import NotFound from './route/NotFound/NotFound';
 import MenuHeader from './components/MenuHeader/MenuHeader';
 import Footer from './components/Footer/Footer';
+import User from './route/User/User';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import FirebaseClass from './service/firebase';
 import { NotificationContainer } from 'react-notifications';
@@ -24,7 +25,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(getUserAsync())
-  }, [])
+  }, [dispatch])
 
   return (
     <FirebaseContext.Provider value={FirebaseClass}>
@@ -38,6 +39,7 @@ const App = () => {
                 <Route exact path="/" component={Home} />
                 <PrivateRoute path="/game" component={Game} />
                 <PrivateRoute path="/about" component={About} />
+                <PrivateRoute path="/user" component={User} />
                 <Route path="/contact" component={Contact} />
                 <Redirect to="404" />
               </Switch>
