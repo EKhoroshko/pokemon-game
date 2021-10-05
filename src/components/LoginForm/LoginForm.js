@@ -1,19 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Input from '../Input/Input';
 import css from '../LoginForm/LoginForm.module.css'
 
-const LoginForm = ({ onSubmitAuth, onSubmitReg }) => {
+const LoginForm = ({ onSubmit, isResetField = false }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [changeForm, setChangeForm] = useState(true);
 
+    useEffect(() => {
+        setPassword('');
+        setEmail('');
+    }, [isResetField])
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (changeForm === true) {
-            onSubmitAuth && onSubmitAuth({ email, password });
-        } else {
-            onSubmitReg && onSubmitReg({ email, password });
-        }
+        onSubmit && onSubmit({
+            type: changeForm ? 'login' : 'signup',
+            email,
+            password,
+        })
         setEmail('');
         setPassword('');
     };

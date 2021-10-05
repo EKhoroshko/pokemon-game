@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import LoginForm from '../LoginForm/LoginForm';
 import css from '../Modal/Modal.module.css';
 
-const Modal = ({ isOpen, title, onSubmitReg, onCloseModal, onSubmitAuth }) => {
+const Modal = ({ isOpen, title, onSubmit, onCloseModal, isResetField }) => {
     const modalRef = useRef();
 
     useEffect(() => {
@@ -32,7 +32,7 @@ const Modal = ({ isOpen, title, onSubmitReg, onCloseModal, onSubmitAuth }) => {
                         onClick={handleCloseModal}></span>
                 </div>
                 <div className={css.content}>
-                    <LoginForm onSubmitReg={onSubmitReg} onSubmitAuth={onSubmitAuth} />
+                    <LoginForm isResetField={isResetField} onSubmit={onSubmit} />
                 </div>
             </div>
         </div>
