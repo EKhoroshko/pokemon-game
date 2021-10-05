@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { setPokemonData, clearChose } from '../../../../store/selectedPokemon';
 import { addPokemonAsync } from '../../../../store/pokemons';
+import { selectLocalID } from '../../../../store/user';
 import { selectPokemonData, clearState } from '../../../../store/secondPlayer'
 import PokemonCard from '../../../../components/PokemonCard/PokemonCard';
 import cn from 'classnames';
@@ -13,6 +14,7 @@ const FinishPage = () => {
     const counter = useSelector(selectCounterData);
     const pokemonSelect = useSelector(setPokemonData);
     const secondPlayer = useSelector(selectPokemonData);
+    const localId = useSelector(selectLocalID);
     const dispatch = useDispatch();
     const [player1, setPlayer1] = useState([]);
     const [player2, setPlayer2] = useState([]);
@@ -36,7 +38,7 @@ const FinishPage = () => {
 
     const handleClick = () => {
         if (counter > 5) {
-            addPokemonAsync(chouseCard);
+            dispatch(addPokemonAsync(chouseCard, localId));
             refreshPage();
         } else {
             refreshPage();

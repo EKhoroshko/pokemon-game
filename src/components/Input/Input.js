@@ -11,6 +11,7 @@ const Input = ({ value, type = "text", title, onChange, label, name }) => {
                 value={value}
                 name={name}
                 onChange={onChange}
+                autoComplete="on"
                 required
             />
             <span className={css.highlight}></span>
