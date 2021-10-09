@@ -13,7 +13,7 @@ const StartPage = () => {
     const pokemonSelect = useSelector(setPokemonData);
     const isLoading = useSelector(selectPokemonLoading);
     const dispatch = useDispatch();
-    const history = useHistory()
+    const history = useHistory();
     const [pokemons, setPokemons] = useState({});
 
     useEffect(() => {

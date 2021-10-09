@@ -1,6 +1,6 @@
 .root {
   background-image: url(../../../../assets/imges/board.png);
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   height: calc(100vw / 1.71);
   position: relative;

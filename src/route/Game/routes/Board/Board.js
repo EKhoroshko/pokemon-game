@@ -1,19 +1,21 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { saveCounter } from '../../../../store/counter';
+import { saveCounter, saveType, selectTypeData } from '../../../../store/counter';
 import { setPokemonData } from '../../../../store/selectedPokemon';
 import { selectPokemonData, targetPokemon } from '../../../../store/secondPlayer';
 import { fetchData, cheackPlate } from '../../../../service/boardApi';
 import { counterWin } from '../../../../service/CounterWin';
 import PlayerBoard from '../Board/component/PlayerBoard/PlayerBoard';
 import PokemonCard from '../../../../components/PokemonCard/PokemonCard';
+import Result from '../Board/component/Result/Result';
 
 import css from '../Board/Board.module.css';
 
 const BoardPage = () => {
     const pokemonSelect = useSelector(setPokemonData);
     const secondPlayer = useSelector(selectPokemonData);
+    const type = useSelector(selectTypeData);
     const dispatch = useDispatch();
     const [board, setBoard] = useState([]);
     const [player1, setPlayer1] = useState([]);
@@ -61,19 +63,21 @@ const BoardPage = () => {
 
     useEffect(() => {
         if (steps === 9) {
-            history.push(`/game/finish`)
+            setTimeout(() => {
+                history.push(`/game/finish`)
+            }, 3000);
             const [count1, count2] = counterWin(board, player1, player2);
             dispatch(saveCounter(count1))
 
             if (count1 > count2) {
-                alert('WIN');
+                dispatch(saveType('win'))
                 return;
             }
             if (count1 < count2) {
-                alert('LOSE');
+                dispatch(saveType('lose'))
                 return;
             } else {
-                alert('DRAW');
+                dispatch(saveType('draw'))
             }
         }
     }, [board, dispatch, history, player1, player2, steps]);
@@ -84,7 +88,7 @@ const BoardPage = () => {
 
     return (
         <div className={css.root}>
-
+            {type && <Result type={type} />}
             <div className={css.playerOne}>
                 <PlayerBoard
                     player={1}
@@ -111,6 +115,7 @@ const BoardPage = () => {
 
                     </div>
                 ))}
+
             </div>
         </div>
     );
