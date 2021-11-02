@@ -15,10 +15,14 @@ export const slice = createSlice({
             ...state,
             type: action.payload,
         }),
+        clearType: (state) => ({
+            ...state,
+            type: '',
+        })
     }
 });
 
-export const { saveCounter, saveType } = slice.actions;
+export const { saveCounter, saveType, clearType } = slice.actions;
 
 export const selectCounterData = state => state.counter.data;
 export const selectTypeData = state => state.counter.type;
