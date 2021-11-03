@@ -4,14 +4,14 @@ import css from '../PlayerBoard/PlayerBoard.module.css';
 import cn from 'classnames';
 
 
-const PlayerBoard = ({ cards, onClickCard, player }) => {
+const PlayerBoard = ({ cards, onClickCard, player, dis }) => {
   const [isSelected, setIsSelected] = useState(null)
 
   return (
     <>
       {
         cards.map((item) => (
-          <div className={cn(css.cardBoard, { [css.selected]: isSelected === item.id })}
+          <div className={cn(css.cardBoard, { [css.selected]: isSelected === item.id }, { [css.disableDiv]: dis })}
             onClick={() => {
               setIsSelected(item.id);
               onClickCard({ player, ...item, })

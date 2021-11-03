@@ -159,6 +159,7 @@ const BoardPage = () => {
         <PlayerBoard
           player={2}
           cards={player2}
+          dis
           /*onClickCard={(card) => setChoiceCard(card)}*/ />
       </div>
 

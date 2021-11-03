@@ -12,3 +12,7 @@
 .cardBoard.selected {
   margin-left: -20px;
 }
+
+.disableDiv {
+  pointer-events: none;
+}
