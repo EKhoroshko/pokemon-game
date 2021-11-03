@@ -11,41 +11,40 @@ import { selectUserLoading, selectLocalID } from '../../store/user';
 import { Link } from 'react-router-dom';
 
 const NavBar = ({ onClicklogin, isActive, handleClickBurgger, bgActive = false }) => {
-    const isLoadingUser = useSelector(selectUserLoading);
-    const localId = useSelector(selectLocalID);
-    console.log(localId);
+  const isLoadingUser = useSelector(selectUserLoading);
+  const localId = useSelector(selectLocalID);
 
-    return (
-        <nav className={cn(css.root, { [css.bgActive]: bgActive })}>
-            <div className={css.navWrapper}>
-                <p className={css.brand}>
-                    <Logotype className={css.logo} />
-                </p>
-                <div className={css.loginAndMenu}>
-                    {(!isLoadingUser && !localId) && (<div className={css.loginWrap}
-                        onClick={onClicklogin}>
-                        <Login />
-                    </div>)}
-                    {(!isLoadingUser && localId) && (
-                        <Link className={css.loginWrap}
-                            to="/user">
-                            <User />
-                        </Link>)}
-                    <div className={cn(css.menuButton, { [css.active]: isActive })}
-                        onClick={() => handleClickBurgger()}>
-                        <span />
-                    </div>
-                </div>
+  return (
+    <nav className={cn(css.root, { [css.bgActive]: bgActive })}>
+      <div className={css.navWrapper}>
+        <p className={css.brand}>
+          <Logotype className={css.logo} />
+        </p>
+        <div className={css.loginAndMenu}>
+          {(!isLoadingUser && !localId) && (<div className={css.loginWrap}
+            onClick={onClicklogin}>
+            <Login />
+          </div>)}
+          {(!isLoadingUser && localId) && (
+            <Link className={css.loginWrap}
+              to="/user">
+              <User />
+            </Link>)}
+          <div className={cn(css.menuButton, { [css.active]: isActive })}
+            onClick={() => handleClickBurgger()}>
+            <span />
+          </div>
+        </div>
 
-            </div>
-        </nav >
-    );
+      </div>
+    </nav >
+  );
 }
 
 NavBar.propTypes = {
-    handleClickButton: PropTypes.func,
-    isActive: PropTypes.bool,
-    bgActive: PropTypes.bool,
+  handleClickButton: PropTypes.func,
+  isActive: PropTypes.bool,
+  bgActive: PropTypes.bool,
 };
 
 export default NavBar;
