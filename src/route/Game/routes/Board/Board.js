@@ -154,11 +154,12 @@ const BoardPage = () => {
           onClickCard={(card) => setChoiceCard(card)} />
       </div>
 
-      <div className={css.playerTwo}>
+      <div className={css.playerTwo}
+        disabled>
         <PlayerBoard
           player={2}
           cards={player2}
-          onClickCard={(card) => setChoiceCard(card)} />
+          /*onClickCard={(card) => setChoiceCard(card)}*/ />
       </div>
 
       <div className={css.board}>
@@ -170,7 +171,6 @@ const BoardPage = () => {
             {
               item.card && <PokemonCard {...item.card} isActive minimize />
             }
-
           </div>
         ))}
 

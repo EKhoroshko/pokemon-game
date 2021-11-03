@@ -2,7 +2,7 @@ import { useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectPokemonData, getPokemonsAsync, selectPokemonLoading } from '../../../../store/pokemons';
-import { addPokemon, setPokemonData, clearChose } from '../../../../store/selectedPokemon';
+import { addPokemon, setPokemonData } from '../../../../store/selectedPokemon';
 import { clearType } from '../../../../store/counter';
 import { getPokemon } from '../../../../store/secondPlayer';
 import PokemonCard from '../../../../components/PokemonCard/PokemonCard';
@@ -18,26 +18,22 @@ const StartPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [pokemons, setPokemons] = useState({});
-  console.log(pokemonSelect);
 
   useEffect(() => {
     dispatch(getPokemonsAsync());
-    dispatch(addPokemon({}));
-    async function poly() {
-      const player2Request = await request.gameStart({
-        pokemons: Object.values(pokemonRedux),
-      })
-      dispatch(getPokemon(player2Request.data));
-    }
     dispatch(clearType(null));
-    dispatch(clearChose());
-    poly();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   useEffect(() => {
     setPokemons(pokemonRedux);
   }, [pokemonRedux]);
+
+  const secondPlayerget = async () => {
+    const player2Request = await request.gameStart({
+      pokemons: Object.values(pokemonRedux),
+    })
+    dispatch(getPokemon(player2Request.data));
+  }
 
   const handlClickCard = (key) => {
     const pokemon = { ...pokemons[key] }
@@ -53,6 +49,7 @@ const StartPage = () => {
 
   const handleClick = () => {
     history.push('/game/board');
+    secondPlayerget();
   }
 
   return (
