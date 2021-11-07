@@ -33,7 +33,7 @@ const BoardPage = () => {
       const boardRequest = await request.getBoard();
       setBoard(boardRequest.data);
       setTimeout(() => {
-        setStartSide(2)
+        setStartSide(1)
       }, 2000);
       setPlayer2(() => secondPlayer.map(item => ({
         ...item,
@@ -67,6 +67,16 @@ const BoardPage = () => {
         },
         board: serverBoard,
       };
+
+      /*const params = {
+        currentPlayer: 'p2',
+        hands: {
+          p1: player1,
+          p2: player2
+        },
+        move: null,
+        board: serverBoard,
+      };*/
 
       if (choiceCard.player === 1) {
         setPlayer1(prevState => prevState.filter(item => item.id !== choiceCard.id));
@@ -159,8 +169,7 @@ const BoardPage = () => {
         <PlayerBoard
           player={2}
           cards={player2}
-          dis
-          /*onClickCard={(card) => setChoiceCard(card)}*/ />
+          dis />
       </div>
 
       <div className={css.board}>
