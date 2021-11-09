@@ -50,6 +50,10 @@
   z-index: -1;
 }
 
+.item {
+  display: flex;
+}
+
 .menuContainer::before,
 .menuContainer::after {
   content: '';
