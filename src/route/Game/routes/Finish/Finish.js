@@ -18,7 +18,6 @@ const FinishPage = () => {
   const localId = useSelector(selectLocalID);
   const allpokemon = useSelector(selectPokemonDataAll);
   const dispatch = useDispatch();
-  const [base, setBase] = useState({})
   const [player1, setPlayer1] = useState([]);
   const [player2, setPlayer2] = useState([]);
   const [chouseCard, setChouseCard] = useState(null)
@@ -31,7 +30,6 @@ const FinishPage = () => {
   useEffect(() => {
     setPlayer1(pokemonSelect);
     setPlayer2(secondPlayer);
-    setBase(allpokemon)
   }, [allpokemon, pokemonSelect, secondPlayer]);
 
   const refreshPage = () => {
@@ -42,7 +40,7 @@ const FinishPage = () => {
 
   const handleClick = () => {
     if (counter > 5) {
-      if (Object.values(base).some(item => chouseCard.id === item.id)) {
+      if (Object.values(allpokemon).some(item => chouseCard.id === item.id)) {
         console.log(`chouseCard`, chouseCard.id)
         return NotificationManager.warning("You have this card in collection, choose another")
       } else {
