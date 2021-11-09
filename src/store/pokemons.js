@@ -42,8 +42,7 @@ export const getPokemonsAsync = () => async (dispatch, getState) => {
   dispatch(fetchPokemonResolve(data));
 }
 
-export const addPokemonAsync = (pokemon) => async (dispatch, getState) => {
-  const localId = selectLocalID(getState())
+export const addPokemonAsync = (pokemon, localId) => async (dispatch) => {
   const idToken = localStorage.getItem('idToken')
   dispatch(fetchPokemons());
   await fetch(`https://pokemon-3f169-default-rtdb.firebaseio.com/${localId}/pokemons.json?auth=${idToken}`, {
