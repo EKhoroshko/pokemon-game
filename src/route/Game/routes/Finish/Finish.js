@@ -41,7 +41,6 @@ const FinishPage = () => {
   const handleClick = () => {
     if (counter > 5) {
       if (Object.values(allpokemon).some(item => chouseCard.id === item.id)) {
-        console.log(`chouseCard`, chouseCard.id)
         return NotificationManager.warning("You have this card in collection, choose another")
       } else {
         dispatch(addPokemonAsync(chouseCard, localId));

@@ -2,7 +2,7 @@
   "name": "pokemon-game",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://EKhoroshko.github.io/",
+  "homepage": "https://quizzical-perlman-a2a0f2.netlify.app",
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.14.1",
