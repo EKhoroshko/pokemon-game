@@ -32,10 +32,6 @@ const BoardPage = () => {
     async function fetchData() {
       const boardRequest = await request.getBoard();
       setBoard(boardRequest.data);
-      setTimeout(() => {
-        const side = Math.floor(Math.random() * 2) + 1;
-        setStartSide(side)
-      }, 2000);
       setPlayer2(() => secondPlayer.map(item => ({
         ...item,
         possession: 'red',
@@ -43,7 +39,13 @@ const BoardPage = () => {
     }
 
     fetchData();
-  }, [dispatch, secondPlayer]);
+    return () => {
+      setTimeout(() => {
+        const side = Math.floor(Math.random() * 2) + 1;
+        setStartSide(side)
+      }, 2000);
+    }
+  }, [secondPlayer])
 
   useEffect(() => {
     setPlayer1(Object.values(pokemonSelect).map(item => ({

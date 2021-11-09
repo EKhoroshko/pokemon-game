@@ -31,7 +31,7 @@ export const slice = createSlice({
 export const { fetchPokemons, fetchPokemonResolve, fetchPokemonReject } = slice.actions;
 
 export const selectPokemonLoading = state => state.pokemons.isLoading;
-export const selectPokemonData = state => state.pokemons.data;
+export const selectPokemonDataAll = state => state.pokemons.data;
 
 export const getPokemonsAsync = () => async (dispatch, getState) => {
   const localId = selectLocalID(getState())

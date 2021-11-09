@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectPokemonData, getPokemonsAsync, selectPokemonLoading } from '../../../../store/pokemons';
+import { selectPokemonDataAll, getPokemonsAsync, selectPokemonLoading } from '../../../../store/pokemons';
 import { addPokemon, setPokemonData } from '../../../../store/selectedPokemon';
 import { clearType } from '../../../../store/counter';
 import { getPokemon } from '../../../../store/secondPlayer';
@@ -12,7 +12,7 @@ import request from '../../../../service/request';
 import css from '../Start/Start.module.css';
 
 const StartPage = () => {
-  const pokemonRedux = useSelector(selectPokemonData);
+  const pokemonRedux = useSelector(selectPokemonDataAll);
   const pokemonSelect = useSelector(setPokemonData);
   const isLoading = useSelector(selectPokemonLoading);
   const dispatch = useDispatch();

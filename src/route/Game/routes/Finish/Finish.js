@@ -3,10 +3,11 @@ import { selectCounterData } from '../../../../store/counter';
 import { useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { setPokemonData, clearChose } from '../../../../store/selectedPokemon';
-import { addPokemonAsync } from '../../../../store/pokemons';
+import { addPokemonAsync, selectPokemonDataAll } from '../../../../store/pokemons';
 import { selectLocalID } from '../../../../store/user';
-import { selectPokemonData, clearState } from '../../../../store/secondPlayer'
+import { selectPokemonData, clearState } from '../../../../store/secondPlayer';
 import PokemonCard from '../../../../components/PokemonCard/PokemonCard';
+import { NotificationManager } from 'react-notifications';
 import cn from 'classnames';
 import css from '../Finish/Finish.module.css';
 
@@ -15,7 +16,9 @@ const FinishPage = () => {
   const pokemonSelect = useSelector(setPokemonData);
   const secondPlayer = useSelector(selectPokemonData);
   const localId = useSelector(selectLocalID);
+  const allpokemon = useSelector(selectPokemonDataAll);
   const dispatch = useDispatch();
+  const [base, setBase] = useState({})
   const [player1, setPlayer1] = useState([]);
   const [player2, setPlayer2] = useState([]);
   const [chouseCard, setChouseCard] = useState(null)
@@ -28,7 +31,8 @@ const FinishPage = () => {
   useEffect(() => {
     setPlayer1(pokemonSelect);
     setPlayer2(secondPlayer);
-  }, [pokemonSelect, secondPlayer]);
+    setBase(allpokemon)
+  }, [allpokemon, pokemonSelect, secondPlayer]);
 
   const refreshPage = () => {
     dispatch(clearState());
@@ -38,8 +42,13 @@ const FinishPage = () => {
 
   const handleClick = () => {
     if (counter > 5) {
-      dispatch(addPokemonAsync(chouseCard, localId));
-      refreshPage();
+      if (Object.values(base).some(item => chouseCard.id === item.id)) {
+        console.log(`chouseCard`, chouseCard.id)
+        return NotificationManager.warning("You have this card in collection, choose another")
+      } else {
+        dispatch(addPokemonAsync(chouseCard, localId));
+        refreshPage();
+      }
     } else {
       refreshPage();
     }
