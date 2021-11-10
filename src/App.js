@@ -10,18 +10,15 @@ import NotFound from './route/NotFound/NotFound';
 import MenuHeader from './components/MenuHeader/MenuHeader';
 import Footer from './components/Footer/Footer';
 import User from './route/User/User';
-//import Loader from './components/Loader/Loader';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import FirebaseClass from './service/firebase';
 import { NotificationContainer } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import { getUserAsync } from './store/user';
 import { useEffect } from 'react';
-//import { selectUserLoading } from './store/user';
-import { useDispatch, /*useSelector*/ } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const App = () => {
-  /*const isUserLoading = useSelector(selectUserLoading);*/
   const location = useLocation();
   const isPadding = location.pathname === '/' || location.pathname === '/game/board';
   const dispatch = useDispatch();
@@ -29,12 +26,6 @@ const App = () => {
   useEffect(() => {
     dispatch(getUserAsync())
   }, [dispatch])
-
-  /*if (isUserLoading) {
-    return (
-      <Loader />
-    );
-  }*/
 
   return (
     <FirebaseContext.Provider value={FirebaseClass}>
