@@ -18,7 +18,7 @@ import 'react-notifications/lib/notifications.css';
 import { getUserAsync } from './store/user';
 import { useEffect } from 'react';
 //import { selectUserLoading } from './store/user';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, /*useSelector*/ } from 'react-redux';
 
 const App = () => {
   /*const isUserLoading = useSelector(selectUserLoading);*/
