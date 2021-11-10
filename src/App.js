@@ -30,11 +30,11 @@ const App = () => {
     dispatch(getUserAsync())
   }, [dispatch])
 
-  if (isUserLoading) {
+  /*if (isUserLoading) {
     return (
       <Loader />
     );
-  }
+  }*/
 
   return (
     <FirebaseContext.Provider value={FirebaseClass}>
