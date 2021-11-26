@@ -2,7 +2,7 @@ import { useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectPokemonDataAll, getPokemonsAsync, selectPokemonLoading } from '../../../../store/pokemons';
-import { addPokemon, setPokemonData } from '../../../../store/selectedPokemon';
+import { addPokemon, setPokemonData, clearChose } from '../../../../store/selectedPokemon';
 import { clearType } from '../../../../store/counter';
 import { getPokemon } from '../../../../store/secondPlayer';
 import PokemonCard from '../../../../components/PokemonCard/PokemonCard';
@@ -26,6 +26,7 @@ const StartPage = () => {
   useEffect(() => {
     dispatch(getPokemonsAsync());
     dispatch(clearType(null));
+    dispatch(clearChose());
   }, [dispatch]);
 
   useEffect(() => {
