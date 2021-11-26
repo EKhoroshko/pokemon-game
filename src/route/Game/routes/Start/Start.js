@@ -12,12 +12,17 @@ import request from '../../../../service/request';
 import css from '../Start/Start.module.css';
 
 const StartPage = () => {
-  const pokemonRedux = useSelector(selectPokemonDataAll);
+  let pokemonRedux = useSelector(selectPokemonDataAll);
   const pokemonSelect = useSelector(setPokemonData);
   const isLoading = useSelector(selectPokemonLoading);
   const dispatch = useDispatch();
   const history = useHistory();
   const [pokemons, setPokemons] = useState({});
+
+  if (!pokemonRedux) {
+    window.location.reload()
+    history.push('/')
+  }
 
   useEffect(() => {
     dispatch(getPokemonsAsync());
