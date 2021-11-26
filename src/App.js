@@ -15,13 +15,21 @@ import FirebaseClass from './service/firebase';
 import { NotificationContainer } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import { getUserAsync } from './store/user';
+import { initializ, selectPokemonDataAll } from './store/pokemons'
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const App = () => {
+  const pok = useSelector(selectPokemonDataAll)
   const location = useLocation();
   const isPadding = location.pathname === '/' || location.pathname === '/game/board';
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (pok === null) {
+      dispatch(initializ())
+    }
+  }, [dispatch, pok])
 
   useEffect(() => {
     dispatch(getUserAsync())

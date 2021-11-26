@@ -9,6 +9,12 @@ export const slice = createSlice({
     error: null,
   },
   reducers: {
+    initializ: state => ({
+      ...state,
+      isLoading: false,
+      data: {},
+      error: null,
+    }),
     fetchPokemons: state => ({
       ...state,
       isLoading: true,
@@ -28,7 +34,7 @@ export const slice = createSlice({
 });
 
 
-export const { fetchPokemons, fetchPokemonResolve, fetchPokemonReject } = slice.actions;
+export const { initializ, fetchPokemons, fetchPokemonResolve, fetchPokemonReject } = slice.actions;
 
 export const selectPokemonLoading = state => state.pokemons.isLoading;
 export const selectPokemonDataAll = state => state.pokemons.data;

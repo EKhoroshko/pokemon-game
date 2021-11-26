@@ -20,7 +20,6 @@ const StartPage = () => {
   const [pokemons, setPokemons] = useState({});
 
   if (!pokemonRedux) {
-    window.location.reload()
     history.push('/')
   }
 
