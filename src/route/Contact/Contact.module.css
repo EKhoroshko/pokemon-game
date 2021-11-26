@@ -1,0 +1,25 @@
+.wrapper {
+  position: relative;
+  height: calc(100vh - 220px);
+  padding: 30px;
+  background-image: url(../../assets/imges/bg3.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 32px;
+}
+
+.list {
+  list-style: none;
+  margin-top: 10px;
+}
